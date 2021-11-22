@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom"
 
-// TODO: catch all errors
+// TODO: styling and linting!
+
 const App = () => {
     
     const [loggedIn, setLoggedIn] = useState(false)
@@ -75,44 +76,52 @@ const App = () => {
   
     return (
         <>
-        <h1>Campuswire Lite</h1>
-        {!loggedIn && (
-            <Link to="login">Log in to submit a question</Link>
-        )}
+        <div>
+            <h1 class="title">Campuswire Lite</h1>
+            
+            {!loggedIn && (
+                <Link to="login">Log in to submit a question</Link>
+            )}
+            {loggedIn && (
+                <>
+                    <h3 className="subtitle">Hi {username}!</h3>
+                    <button className="button is-primary" type='submit' onClick={logoutUser}>Logout</button>
+                    <br />
+                    <button className="button is-primary" type='submit' onClick={() => setAddQuestion(true)}>Add new Question + </button>
+                </>   
+            )}
 
-        {loggedIn && (
-            <>
-                <h3>Hi {username}</h3>
-                <button type='submit' onClick={logoutUser}>Logout</button>
-                <br />
-                <button type='submit' onClick={() => setAddQuestion(true)}>Add new Question + </button>
-            </>   
-        )}
+            
+        </div>
+        
 
         {addQuestion && (
             <div>
                 <h3>Question:</h3>
-                <input onChange={e => setQuestionText(e.target.value)} />
+                <input className="input is-primary" onChange={e => setQuestionText(e.target.value)} />
                 <br />
-                <button type='submit' onClick={submitQuestion}>Submit</button>
+                <button className="button is-primary" type='submit' onClick={submitQuestion}>Submit</button>
                 <br />
-                <button type='submit' onClick={() => {
+                <button className="button is-primary" type='submit' onClick={() => {
                     setAddQuestion(false)
                     setQuestionText('')
                 }}>Close</button>
             </div>
         )}
         {questions.map(question => (
-            <div key={question._id}>
-                <p> Question: {question.questionText}</p>
-                <p>Author: {question.author}</p>
-                <p>Answer: {question.answer}</p>
+            <div key={question._id} class="media">
+                <div className="media-left">
+                    <p> Question: {question.questionText}</p>
+                    <p>Author: {question.author}</p>
+                    <p>Answer: {question.answer}</p>
+                </div>
+                
                 {loggedIn && (question.answer === '' || question.answer === undefined) && (
                     <div>
                         <h5>Answer this question:</h5>
-                        <input onChange={e => setAnswer(e.target.value)} />
+                        <input className="input is-primary" onChange={e => setAnswer(e.target.value)} />
                         <br />
-                        <button type='submit' onClick={() => answerQuestion(question._id)}>Submit</button>
+                        <button className ="button is-primary" type='submit' onClick={() => answerQuestion(question._id)}>Submit</button>
                     </div>
                 )}
             </div>
