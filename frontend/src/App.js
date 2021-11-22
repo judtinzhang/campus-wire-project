@@ -15,18 +15,29 @@ const App = () => {
     const getLoginInfo = async () => {
         const username = sessionStorage.getItem('username')
         setUsername(username)
-        const { data } = await axios.post('/account/authenticated', { username })
+        try {
+            const { data } = await axios.post('/account/authenticated', { username })
+        } catch (err) {
+            alert("Error: " + err)
+        }
         setLoggedIn(data)
-
     }
 
     const getQuestions = async () => {
-        const { data } = await axios.get('/api/questions')
+        try {
+            const { data } = await axios.get('/api/questions')
+        } catch (err) {
+            alert("Error: " + err)
+        }
         setQuestions(data)
     }
 
     const logoutUser = async () => {
-        const { data } = await axios.post('/account/logout', { username })
+        try {
+            const { data } = await axios.post('/account/logout', { username })    
+        } catch (err) {
+            alert("Error: " + err)
+        }
         setUsername('')
         setLoggedIn(false)
     }
@@ -35,7 +46,7 @@ const App = () => {
         try {
             const { data } = await axios.post('/api/questions/add', { questionText })
         } catch (err) {
-            console.log(err)
+            alert("Error: " + err)
         }
         setAddQuestion(false)
         setQuestionText('')
@@ -45,7 +56,7 @@ const App = () => {
         try {
             const { data } = await axios.post('/api/questions/answer', { _id, answer })
         } catch (err) {
-            console.log(err)
+            alert("Error: " + err)
         }
     }
 
