@@ -25,18 +25,18 @@ const Login= () => {
     }
 
     return (
-        <>
-            <h1>Log In</h1>
+        <div class="container">
+            <h1 class="title" >Log In</h1>
             <h3>Username:</h3>
-            <input onChange={e => setUsername(e.target.value)} />
+            <input className="input is-primary" onChange={e => setUsername(e.target.value)} />
             <br/>
             <h3>Password:</h3>
-            <input onChange={e => setPassword(e.target.value)} />
+            <input className="input is-primary" onChange={e => setPassword(e.target.value)} />
             <br />
-            <button type='submit' onClick={loginUser}>Submit</button>
+            <button className="button is-primary" type='submit' onClick={loginUser}>Submit</button>
             <br />
             Don't have an account? <Link to="../signup">Sign Up!</Link>
-        </>
+        </div>
     )
 }
 

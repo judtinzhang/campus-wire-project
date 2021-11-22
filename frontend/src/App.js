@@ -75,28 +75,30 @@ const App = () => {
     }, [])
   
     return (
-        <>
+        <div className="container">
         <div>
             <h1 class="title">Campuswire Lite</h1>
-            
-            {!loggedIn && (
-                <Link to="login">Log in to submit a question</Link>
-            )}
-            {loggedIn && (
-                <>
-                    <h3 className="subtitle">Hi {username}!</h3>
-                    <button className="button is-primary" type='submit' onClick={logoutUser}>Logout</button>
-                    <br />
-                    <button className="button is-primary" type='submit' onClick={() => setAddQuestion(true)}>Add new Question + </button>
-                </>   
-            )}
-
+            <div>
+                {!loggedIn && (
+                    <Link to="login">Log in to submit a question</Link>
+                )}
+                {loggedIn && (
+                    <div>
+                        <h3 className="subtitle">Hi {username}!</h3>
+                        <div className="level">
+                            <button className="button is-primary" type='submit' onClick={logoutUser}>Logout</button>
+                            <br />
+                            <button className="button is-primary" type='submit' onClick={() => setAddQuestion(true)}>Add new Question + </button>
+                        </div>
+                    </div>   
+                )}    
+            </div>
             
         </div>
+        <br />
         
-
         {addQuestion && (
-            <div>
+            <div class="box">
                 <h3>Question:</h3>
                 <input className="input is-primary" onChange={e => setQuestionText(e.target.value)} />
                 <br />
@@ -108,8 +110,9 @@ const App = () => {
                 }}>Close</button>
             </div>
         )}
+
         {questions.map(question => (
-            <div key={question._id} class="media">
+            <div key={question._id} class="media box">
                 <div className="media-left">
                     <p> Question: {question.questionText}</p>
                     <p>Author: {question.author}</p>
@@ -126,7 +129,7 @@ const App = () => {
                 )}
             </div>
         ))}
-        </>
+        </div>
     )
 }
 
