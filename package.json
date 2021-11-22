@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "babel-eslint": "^10.1.0",
+    "concurrently": "^6.4.0",
     "cookie-session": "^1.4.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -29,5 +30,12 @@
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4 || ^3 || ^2.3.0 || ^1.7.0"
-  }
+  },
+  "browserslist": [
+    "last 3 and_chr versions",
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 ios_saf versions",
+    "last 3 safari versions"
+    ]
 }

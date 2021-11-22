@@ -14,6 +14,8 @@ mongoose.connect(MONGO_URI, {
   useUnifiedTopology: true,
 })
 
+app.use(express.static('dist'))
+
 app.use(express.json())
 app.use(session({
   name: 'session',
@@ -24,6 +26,14 @@ app.use(session({
 app.use('/account', AccountRouter)
 app.use('/api/questions', QuestionRouter)
 app.use(errorHandler)
+
+app.get('/favicon.ico', (req, res) => {
+  res.status(404).send()
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'))
+})
 
 app.listen(3000, () => {
   console.log('Listening on port 3000')
