@@ -14,6 +14,7 @@ const Login= () => {
         try {
             const { data } = await axios.post('/account/login', { username, password })
             if (data === `User ${username} has been logged in!`) {
+                sessionStorage.setItem('username', username)
                 navigate('/')
             } else {
                 alert('Unable to Login: ' + data)

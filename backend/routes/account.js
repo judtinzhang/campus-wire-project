@@ -5,6 +5,11 @@ const router = express.Router()
 const User = require('../models/user')
 
 // brew services start mongodb/brew/mongodb-community
+router.post('/authenticated', async (req, res, next) => {
+  const { username } = req.body
+  res.send((req.session.username === username).toString())
+})
+
 router.post('/signup', async (req, res, next) => {
   const { username, password } = req.body
   try {
