@@ -17,29 +17,29 @@ const App = () => {
         setUsername(username)
         try {
             const { data } = await axios.post('/account/authenticated', { username })
+            setLoggedIn(data)
         } catch (err) {
             alert("Error: " + err)
         }
-        setLoggedIn(data)
     }
 
     const getQuestions = async () => {
         try {
             const { data } = await axios.get('/api/questions')
+            setQuestions(data)
         } catch (err) {
             alert("Error: " + err)
         }
-        setQuestions(data)
     }
 
     const logoutUser = async () => {
         try {
-            const { data } = await axios.post('/account/logout', { username })    
+            const { data } = await axios.post('/account/logout', { username })
+            setUsername('')
+            setLoggedIn(false)    
         } catch (err) {
             alert("Error: " + err)
         }
-        setUsername('')
-        setLoggedIn(false)
     }
 
     const submitQuestion = async () => {
