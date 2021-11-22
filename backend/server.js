@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const session = require('cookie-session')
+const path = require('path')
 const { errorHandler } = require('./middlewares/errorHandler')
 
 const AccountRouter = require('./routes/account')
@@ -13,8 +14,6 @@ mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-
-const path = require('path');
 
 app.use(express.static('dist'))
 
