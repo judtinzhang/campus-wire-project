@@ -14,6 +14,8 @@ mongoose.connect(MONGO_URI, {
   useUnifiedTopology: true,
 })
 
+const path = require('path');
+
 app.use(express.static('dist'))
 
 app.use(express.json())
